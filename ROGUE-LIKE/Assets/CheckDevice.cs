@@ -18,7 +18,7 @@ public class CheckDevice : MonoBehaviour
             gameObject.SetActive(true);
         }
 
-        if(EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android)
+        /*if(EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android)
         {
             gameObject.SetActive(true);
         }
@@ -26,7 +26,7 @@ public class CheckDevice : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-        }
+        }*/
     }
 
     // Update is called once per frame
