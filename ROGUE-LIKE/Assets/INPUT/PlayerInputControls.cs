@@ -44,13 +44,22 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DODGE"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbf2df3e-0df2-4de4-9283-8fd5897ff557"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""3a73fb69-ede7-4ebb-b12b-cf06c4b05d13"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,7 +70,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""be25ad07-c206-4c65-8b2d-3271c6417469"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -134,6 +143,56 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""action"": ""MOVE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0b8703b-f70a-4759-9a2c-a4fb08472040"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DODGE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e1cc19d-0a09-4d2d-b6d8-c97aa80047c9"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DODGE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MENU"",
+            ""id"": ""794a469a-282c-4e28-b770-f06f0bdf8cd3"",
+            ""actions"": [
+                {
+                    ""name"": ""QUIT"",
+                    ""type"": ""Button"",
+                    ""id"": ""665cfdad-8ce7-4371-9f0a-c4fb8ff03edd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2b39f068-a700-451d-bb80-bde9b833635f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QUIT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -144,6 +203,10 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_ATTACK = m_Player.FindAction("ATTACK", throwIfNotFound: true);
         m_Player_MOVE = m_Player.FindAction("MOVE", throwIfNotFound: true);
+        m_Player_DODGE = m_Player.FindAction("DODGE", throwIfNotFound: true);
+        // MENU
+        m_MENU = asset.FindActionMap("MENU", throwIfNotFound: true);
+        m_MENU_QUIT = m_MENU.FindAction("QUIT", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,12 +270,14 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_ATTACK;
     private readonly InputAction m_Player_MOVE;
+    private readonly InputAction m_Player_DODGE;
     public struct PlayerActions
     {
         private @PlayerInputControls m_Wrapper;
         public PlayerActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ATTACK => m_Wrapper.m_Player_ATTACK;
         public InputAction @MOVE => m_Wrapper.m_Player_MOVE;
+        public InputAction @DODGE => m_Wrapper.m_Player_DODGE;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -228,6 +293,9 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @MOVE.started += instance.OnMOVE;
             @MOVE.performed += instance.OnMOVE;
             @MOVE.canceled += instance.OnMOVE;
+            @DODGE.started += instance.OnDODGE;
+            @DODGE.performed += instance.OnDODGE;
+            @DODGE.canceled += instance.OnDODGE;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -238,6 +306,9 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @MOVE.started -= instance.OnMOVE;
             @MOVE.performed -= instance.OnMOVE;
             @MOVE.canceled -= instance.OnMOVE;
+            @DODGE.started -= instance.OnDODGE;
+            @DODGE.performed -= instance.OnDODGE;
+            @DODGE.canceled -= instance.OnDODGE;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -255,9 +326,60 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // MENU
+    private readonly InputActionMap m_MENU;
+    private List<IMENUActions> m_MENUActionsCallbackInterfaces = new List<IMENUActions>();
+    private readonly InputAction m_MENU_QUIT;
+    public struct MENUActions
+    {
+        private @PlayerInputControls m_Wrapper;
+        public MENUActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @QUIT => m_Wrapper.m_MENU_QUIT;
+        public InputActionMap Get() { return m_Wrapper.m_MENU; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MENUActions set) { return set.Get(); }
+        public void AddCallbacks(IMENUActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MENUActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MENUActionsCallbackInterfaces.Add(instance);
+            @QUIT.started += instance.OnQUIT;
+            @QUIT.performed += instance.OnQUIT;
+            @QUIT.canceled += instance.OnQUIT;
+        }
+
+        private void UnregisterCallbacks(IMENUActions instance)
+        {
+            @QUIT.started -= instance.OnQUIT;
+            @QUIT.performed -= instance.OnQUIT;
+            @QUIT.canceled -= instance.OnQUIT;
+        }
+
+        public void RemoveCallbacks(IMENUActions instance)
+        {
+            if (m_Wrapper.m_MENUActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMENUActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MENUActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MENUActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MENUActions @MENU => new MENUActions(this);
     public interface IPlayerActions
     {
         void OnATTACK(InputAction.CallbackContext context);
         void OnMOVE(InputAction.CallbackContext context);
+        void OnDODGE(InputAction.CallbackContext context);
+    }
+    public interface IMENUActions
+    {
+        void OnQUIT(InputAction.CallbackContext context);
     }
 }
