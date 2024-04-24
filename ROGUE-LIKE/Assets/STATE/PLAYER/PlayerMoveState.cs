@@ -2,17 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : MonoBehaviour
+public class PlayerMoveState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerMoveState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void InStart()
     {
-        
+    }
+
+    public override void InUpdate(float time)
+    {
+        Move();
+        Facing();
+        CheckForAttack();
+        CheckForShield();
+
+        if(stateMachine.inputReader.isMoving)
+        {
+            stateMachine.animator.Play("WALK");
+        }
+
+        else
+        {
+            stateMachine.animator.Play("IDLE");
+        }
+    }
+
+    public override void OnExit()
+    {
     }
 }

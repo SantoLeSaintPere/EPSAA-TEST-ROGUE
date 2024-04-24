@@ -1,8 +1,9 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine : StateMachine
 {
     [HideInInspector]
     public PlayerInputReader inputReader;
@@ -10,9 +11,17 @@ public class PlayerStateMachine : MonoBehaviour
     public CharacterController characterController;
     [HideInInspector]
     public PlayerGroundDetector groundDetector;
+    [HideInInspector]
+    public Animator animator;
+    [HideInInspector]
+    public SpriteRenderer spriteRenderer;
+    [HideInInspector]
+    public PlayerAttackManager attackManager;
 
     public float speed;
-    Transform body;
+    public float shieldSpeed;
+    [HideInInspector]
+    public Transform body;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,20 +29,16 @@ public class PlayerStateMachine : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         groundDetector = GetComponent<PlayerGroundDetector>();
 
+        attackManager = GetComponent<PlayerAttackManager>();
+
         body = transform.GetChild(0);
+
+
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        NextState(new PlayerMoveState(this));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(inputReader.isMoving)
-        {
-            if(groundDetector.isGrounded)
-            {
 
-                characterController.Move((inputReader.direction) * speed * Time.deltaTime);
-            }
-            body.rotation = Quaternion.LookRotation(inputReader.direction, Vector3.up);
-        }
-    }
 }

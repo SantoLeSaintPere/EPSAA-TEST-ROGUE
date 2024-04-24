@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : MonoBehaviour
+public class PlayerAttackState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerAttackState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    float timer;
+
+    public override void InStart()
     {
-        
+        stateMachine.animator.Play("ATTACK");
+    }
+
+    public override void InUpdate(float time)
+    {
+        timer += time;
+        if (timer >= stateMachine.attackManager.attackClip.length)
+        {
+            stateMachine.NextState(new PlayerMoveState(stateMachine));
+        }
+    }
+
+    public override void OnExit()
+    {
     }
 }

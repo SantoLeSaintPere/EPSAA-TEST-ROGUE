@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    State currentState;
+
+
+    public void NextState(State state)
     {
-        
+        currentState?.OnExit();
+        currentState = state;
+        currentState?.InStart();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        currentState?.InUpdate(Time.deltaTime);
     }
 }

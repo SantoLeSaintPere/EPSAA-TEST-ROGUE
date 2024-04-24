@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHoldAttackState : MonoBehaviour
+public class PlayerHoldAttackState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerHoldAttackState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void InStart()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override void InUpdate(float time)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnExit()
+    {
+        throw new System.NotImplementedException();
     }
 }

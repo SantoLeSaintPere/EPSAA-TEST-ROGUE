@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDodgeState : MonoBehaviour
+public class PlayerDodgeState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerDodgeState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void InStart()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override void InUpdate(float time)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnExit()
+    {
+        throw new System.NotImplementedException();
     }
 }

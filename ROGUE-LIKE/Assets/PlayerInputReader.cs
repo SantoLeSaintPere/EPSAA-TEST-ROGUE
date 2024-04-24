@@ -7,7 +7,8 @@ public class PlayerInputReader : MonoBehaviour
     public PlayerInputControls inputcontrols;
     public Vector3 direction;
     public bool isMoving;
-    public bool isAttacking;
+    public bool isHoldingAttack;
+    public bool isHoldingShield;
     private void Awake()
     {
         inputcontrols = new PlayerInputControls();
@@ -35,9 +36,10 @@ public class PlayerInputReader : MonoBehaviour
         direction = new Vector3(move.x,0, move.y);
         direction.Normalize();
         isMoving = direction.sqrMagnitude > 0;
-        isAttacking = inputcontrols.Player.ATTACK.IsPressed();
+        isHoldingAttack = inputcontrols.Player.ATTACK.IsPressed();
+        isHoldingShield = inputcontrols.Player.DODGE.IsPressed();
 
-        if(isAttacking )
+        if(isHoldingAttack )
         {
             Debug.Log("ATTACK");
         }
