@@ -15,11 +15,12 @@ public class EnemyAttackManager : MonoBehaviour
     public float attackRange;
     public int damage;
 
-    [Header("ATTACK-POINT / SHOOT-POINT")]
+    [Header("ATTACK-POINT")]
     public Transform attackPoint;
-    public Transform shootPointHolder;
 
     [Header("IF SHOOTER")]
+    public Transform shootPointHolder;
+    public GameObject muzzle;
     public GameObject bullet;
 
 
@@ -46,15 +47,40 @@ public class EnemyAttackManager : MonoBehaviour
     {
         isInAttackZone = Physics.CheckSphere(transform.position + offset, attackDetectionZone, playerLayer);
 
-        if(isShooter && isInAttackZone)
+        if(isShooter)
         {
-            shootPointHolder.rotation = Quaternion.LookRotation(transform.position - player.position, Vector3.up);
+            ShooterBehaviour();
         }
     }
 
     public void Shoot()
     {
         GameObject bulletInst = Instantiate(bullet, attackPoint.position, attackPoint.rotation);
+    }
+
+    public void ShooterBehaviour()
+    {
+        if (isInAttackZone)
+        {
+            ShowMuzzle();
+            Quaternion lookRot = Quaternion.LookRotation(transform.position - player.position, Vector3.up);
+            shootPointHolder.rotation = lookRot;
+        }
+
+        else
+        {
+            HideMuzzle();
+        }
+    }
+
+    public void ShowMuzzle()
+    {
+        muzzle.SetActive(true);
+    }
+
+    public void HideMuzzle()
+    {
+        muzzle.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
