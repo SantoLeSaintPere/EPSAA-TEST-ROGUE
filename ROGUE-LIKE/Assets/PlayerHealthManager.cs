@@ -26,8 +26,8 @@ public class PlayerHealthManager : MonoBehaviour
     }
     public void GiveLife()
     {
-        life[health+1].SetActive(true);
-        health++;
+        life[health].SetActive(true);
+        health+=1;
     }
 
     public void TakeDamage(int damage)
