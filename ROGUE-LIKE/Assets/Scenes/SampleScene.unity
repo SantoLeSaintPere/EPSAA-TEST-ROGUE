@@ -3445,6 +3445,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2b4a086afa60d4aac48232b9b1fb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuScene:
+    m_SceneAsset: {fileID: 102900000, guid: 526624466bcef0b4ebc4b22db0a70586, type: 3}
+    m_SceneName: MAIN MENU
 --- !u!4 &1230278545
 Transform:
   m_ObjectHideFlags: 0
@@ -5286,7 +5289,6 @@ GameObject:
   - component: {fileID: 1667032380}
   - component: {fileID: 1667032379}
   - component: {fileID: 1667032378}
-  - component: {fileID: 1667032377}
   m_Layer: 5
   m_Name: Button Option
   m_TagString: Untagged
@@ -5313,19 +5315,6 @@ RectTransform:
   m_AnchoredPosition: {x: -10, y: -65}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &1667032377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667032375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/r
 --- !u!114 &1667032378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5369,7 +5358,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1667032379}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1230278544}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1667032379
 MonoBehaviour:
   m_ObjectHideFlags: 0

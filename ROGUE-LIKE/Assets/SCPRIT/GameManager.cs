@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public PlayerInputControls inputControls;
-
+    public SceneField mainMenuScene;
     private void Awake()
     {
         inputControls = new PlayerInputControls();
@@ -44,5 +44,10 @@ public class GameManager : MonoBehaviour
     public void Reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(mainMenuScene);
     }
 }
