@@ -30,7 +30,7 @@ public class PlayerMoveShieldState : PlayerBaseState
             stateMachine.animator.Play("SHIELD-IDLE");
         }
 
-        if (!stateMachine.inputReader.isHoldingShield)
+        if (!stateMachine.shieldManager.canUseShield)
         {
             stateMachine.NextState(new PlayerMoveState(stateMachine));
         }

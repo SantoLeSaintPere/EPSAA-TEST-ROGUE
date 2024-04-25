@@ -17,6 +17,10 @@ public class PlayerStateMachine : StateMachine
     public SpriteRenderer spriteRenderer;
     [HideInInspector]
     public PlayerAttackManager attackManager;
+    [HideInInspector]
+    public PlayerHealthManager healthManager;
+    [HideInInspector]
+    public PlayerShieldManager shieldManager;
 
     public float speed;
     public float shieldSpeed;
@@ -30,7 +34,8 @@ public class PlayerStateMachine : StateMachine
         groundDetector = GetComponent<PlayerGroundDetector>();
 
         attackManager = GetComponent<PlayerAttackManager>();
-
+        healthManager = GetComponent<PlayerHealthManager>();
+        shieldManager = GetComponent<PlayerShieldManager>();
         body = transform.GetChild(0);
 
 

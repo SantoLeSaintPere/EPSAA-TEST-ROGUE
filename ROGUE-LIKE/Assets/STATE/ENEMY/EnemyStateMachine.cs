@@ -15,16 +15,29 @@ public class EnemyStateMachine : StateMachine
     public Animator animator;
     [HideInInspector]
     public EnemyAttackManager attackManager;
-
+    [HideInInspector]
+    public Transform player;
 
     public EnemyType enemyType;
 
-    public float speed;
+    public float speed = 2.5f;
+    public float turnSpeed = 5f;
+
+    [Header("HEALTH")]
+    public AnimationClip hurtClip;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         attackManager = GetComponent<EnemyAttackManager>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        Invoke("Init", 1);
+    }
+
+    public void Init()
+    {
+        NextState(new EnemyMoveState(this));
     }
 }

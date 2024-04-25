@@ -10,16 +10,34 @@ public class EnemyMoveState : EnemyBaseState
 
     public override void InStart()
     {
-        throw new System.NotImplementedException();
+        stateMachine.animator.Play("IDLE");
     }
 
     public override void InUpdate(float time)
     {
-        throw new System.NotImplementedException();
+        ChasePlayer();
+
+        if(stateMachine.enemyType == EnemyType.shooter)
+        {
+            AimPlayer();
+        }
+
+        if(stateMachine.attackManager.isInAttackZone)
+        {
+            if(stateMachine.enemyType == EnemyType.shooter)
+            {
+                stateMachine.NextState(new EnemyShootState(stateMachine));
+            }
+
+            else
+            {
+                stateMachine.NextState(new EnemyAttackState(stateMachine));
+            }
+        }
     }
 
     public override void OnExit()
     {
-        throw new System.NotImplementedException();
+
     }
 }

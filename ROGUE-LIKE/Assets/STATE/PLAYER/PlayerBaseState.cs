@@ -59,7 +59,7 @@ public abstract class PlayerBaseState : State
 
     protected void CheckForShield()
     {
-        if(stateMachine.inputReader.isHoldingShield)
+        if(stateMachine.shieldManager.canUseShield)
         {
             stateMachine.NextState(new PlayerMoveShieldState(stateMachine));
         }

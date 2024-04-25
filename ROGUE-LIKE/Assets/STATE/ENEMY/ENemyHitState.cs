@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ENemyHitState : MonoBehaviour
+public class EnemyHitState : EnemyBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public EnemyHitState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    float timer;
+    public override void InStart()
     {
-        
+
+    }
+
+    public override void InUpdate(float time)
+    {
+        timer += time;
+        StopChasing();
+
+        if(timer >= stateMachine.hurtClip.length)
+        {
+            stateMachine.NextState(new EnemyMoveState(stateMachine));
+        }
+    }
+
+    public override void OnExit()
+    {
     }
 }

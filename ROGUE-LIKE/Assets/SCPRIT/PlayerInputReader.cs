@@ -38,10 +38,5 @@ public class PlayerInputReader : MonoBehaviour
         isMoving = direction.sqrMagnitude > 0;
         isHoldingAttack = inputcontrols.Player.ATTACK.IsPressed();
         isHoldingShield = inputcontrols.Player.DODGE.IsPressed();
-
-        if(isHoldingAttack )
-        {
-            Debug.Log("ATTACK");
-        }
     }
 }

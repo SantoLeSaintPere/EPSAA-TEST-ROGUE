@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackState : MonoBehaviour
+public class EnemyAttackState : EnemyBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    public EnemyAttackState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    float timer;
+
+    public override void InStart()
     {
-        
+        StopChasing();
+        stateMachine.animator.Play("ATTACK");
+    }
+
+    public override void InUpdate(float time)
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= stateMachine.attackManager.attackClip.length)
+        {
+            stateMachine.NextState(new EnemyMoveState(stateMachine));
+        }
+    }
+
+    public override void OnExit()
+    {
     }
 }
