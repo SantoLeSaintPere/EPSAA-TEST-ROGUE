@@ -18,6 +18,12 @@ public class PlayerAttackState : PlayerBaseState
     public override void InUpdate(float time)
     {
         timer += time;
+
+        if(timer >= stateMachine.attackManager.timerToRedoAttack)
+        {
+            CheckForAttack();
+        }
+
         if (timer >= stateMachine.attackManager.attackClip.length)
         {
             stateMachine.NextState(new PlayerMoveState(stateMachine));

@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackManager : MonoBehaviour
+public class WallBehaviour : MonoBehaviour
 {
-    public AnimationClip attackClip;
-    public float timerToRedoAttack = 0.35f;
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
     // Update is called once per frame

@@ -79,6 +79,17 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""b750298a-749e-4f52-9775-1bbdba2f6652"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ATTACK"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D Vector"",
                     ""id"": ""ed80cc51-080b-427e-84fb-40c16a8abe01"",
                     ""path"": ""2DVector"",
@@ -159,6 +170,17 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2e1cc19d-0a09-4d2d-b6d8-c97aa80047c9"",
                     ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DODGE"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5cb704f2-3982-4436-b53d-1e147b47a56d"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

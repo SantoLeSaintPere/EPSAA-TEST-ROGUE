@@ -10,7 +10,6 @@ public class PlayerMoveShieldState : PlayerBaseState
 
     public override void InStart()
     {
-        stateMachine.animator.Play("SHIELD-MOVE");
     }
 
     public override void InUpdate(float time)
