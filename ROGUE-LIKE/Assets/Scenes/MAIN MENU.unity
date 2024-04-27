@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- ROGUE PUNK -'
+  m_text: '- ROGUE PUNK GAME -'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 06c157a5bea8d2d45a138911ee497214, type: 2}
   m_sharedMaterial: {fileID: 5821779019184972653, guid: 06c157a5bea8d2d45a138911ee497214, type: 2}

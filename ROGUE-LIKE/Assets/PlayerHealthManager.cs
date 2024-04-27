@@ -15,7 +15,6 @@ public class PlayerHealthManager : MonoBehaviour
     public bool hitted;
     PlayerStateMachine stateMachine;
     public AnimationClip hitClip;
-    float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +33,6 @@ public class PlayerHealthManager : MonoBehaviour
     {
         if(!hitted)
         {
-            timer = 0;
             life[health - 1].SetActive(false);
             health -= damage;
             stateMachine.NextState(new PlayerHitState(stateMachine));

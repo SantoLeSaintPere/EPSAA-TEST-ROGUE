@@ -26,6 +26,11 @@ public abstract class EnemyBaseState : State
         stateMachine.agent.isStopped = true;
     }
 
+    public void FacePlayer()
+    {
+        Quaternion lookRot = Quaternion.LookRotation(stateMachine.player.position - stateMachine.attackManager.transform.position, Vector3.up);
+        stateMachine.attackManager.shooterManager.shootPointHolder.rotation = lookRot;
+    }
 
     public void AimPlayer()
     {

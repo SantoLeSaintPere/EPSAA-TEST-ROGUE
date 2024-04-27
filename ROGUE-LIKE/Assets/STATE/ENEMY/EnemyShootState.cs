@@ -27,7 +27,8 @@ public class EnemyShootState : EnemyBaseState
         if(timer < stateMachine.attackManager.shooterManager.coolDown)
         {
             stateMachine.animator.Play("AIM");
-            AimPlayer();
+            //AimPlayer();
+            FacePlayer();
         }
 
 
