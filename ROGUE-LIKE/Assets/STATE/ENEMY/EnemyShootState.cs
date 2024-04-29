@@ -17,13 +17,6 @@ public class EnemyShootState : EnemyBaseState
     {
         timer += Time.deltaTime;
 
-        if (timer >= stateMachine.attackManager.shooterManager.fireRate)
-        {
-            stateMachine.animator.Play("ATTACK");
-            stateMachine.attackManager.Shoot();
-            timer = 0;
-        }
-
         if(timer < stateMachine.attackManager.shooterManager.coolDown)
         {
             stateMachine.animator.Play("AIM");
@@ -31,9 +24,10 @@ public class EnemyShootState : EnemyBaseState
             FacePlayer();
         }
 
-
-        if(!stateMachine.attackManager.isInAttackZone)
+        if (timer >= stateMachine.attackManager.shooterManager.fireRate)
         {
+            stateMachine.animator.Play("ATTACK");
+            stateMachine.attackManager.Shoot();
             stateMachine.NextState(new EnemyMoveState(stateMachine));
         }
     }
