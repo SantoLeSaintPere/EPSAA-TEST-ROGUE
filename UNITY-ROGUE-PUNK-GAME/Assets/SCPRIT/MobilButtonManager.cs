@@ -3,30 +3,23 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class CheckDevice : MonoBehaviour
+public class MobilButtonManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool isMobil;
     void Start()
     {
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
             gameObject.SetActive(false);
+            isMobil = false;
         }
 
         if (Application.platform == RuntimePlatform.Android)
         {
             gameObject.SetActive(true);
+            isMobil = true;
         }
-
-        /*if(EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android)
-        {
-            gameObject.SetActive(true);
-        }
-
-        else
-        {
-            gameObject.SetActive(false);
-        }*/
     }
 
     // Update is called once per frame

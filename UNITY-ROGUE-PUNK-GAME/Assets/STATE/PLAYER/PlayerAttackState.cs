@@ -12,20 +12,46 @@ public class PlayerAttackState : PlayerBaseState
 
     public override void InStart()
     {
-        stateMachine.animator.Play("ATTACK");
+        if(stateMachine.attackManager.attackCount == 0)
+        {
+
+            stateMachine.animator.Play("ATTACK");
+        }
+
+
+        if (stateMachine.attackManager.attackCount == 1)
+        {
+
+            stateMachine.animator.Play("ATTACK-2");
+        }
+
+
+
+        if (stateMachine.attackManager.attackCount == 2)
+        {
+
+            stateMachine.animator.Play("ATTACK-3");
+        }
     }
 
     public override void InUpdate(float time)
     {
         timer += time;
 
-        if(timer >= stateMachine.attackManager.timerToRedoAttack)
+        if (stateMachine.attackManager.attackCount != stateMachine.attackManager.attackClip.Length-1)
         {
-            CheckForAttack();
+            if (timer >= stateMachine.attackManager.timerToRedoAttack[stateMachine.attackManager.attackCount]
+
+                && stateMachine.inputReader.inputcontrols.Player.ATTACK.WasPerformedThisFrame())
+            {
+                stateMachine.attackManager.attackCount++;
+                stateMachine.NextState(new PlayerAttackState(stateMachine));
+            }
         }
 
-        if (timer >= stateMachine.attackManager.attackClip.length)
+        if (timer >= stateMachine.attackManager.attackClip[stateMachine.attackManager.attackCount].length)
         {
+            stateMachine.attackManager.attackCount = 0;
             stateMachine.NextState(new PlayerMoveState(stateMachine));
         }
     }
