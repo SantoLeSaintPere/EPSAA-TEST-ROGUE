@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UiOptionManager : MonoBehaviour
 {
+    GameManager gameManager;
     MobilButtonManager mobilButtonManager;
 
     public GameObject optionPanel;
@@ -12,10 +13,14 @@ public class UiOptionManager : MonoBehaviour
     public GameObject stickPanel, buttonPanel;
 
     bool useStick;
-    bool isPaused;
+    [HideInInspector]
+    public bool isPaused;
+    public static bool isPausedStatic;
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         mobilButtonManager = FindObjectOfType<MobilButtonManager>();
         if(mobilButtonManager.isMobil)
         {
@@ -39,6 +44,20 @@ public class UiOptionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameManager.inputControls.MENU.OPTIONS.WasPerformedThisFrame())
+        {
+            if(isPausedStatic)
+            {
+                isPausedStatic = false;
+                OptionPanelOff();
+            }
+
+            else
+            {
+                isPausedStatic = true;
+                OptionPanelOn();
+            }
+        }
     }
 
     public void OptionPanelOn()

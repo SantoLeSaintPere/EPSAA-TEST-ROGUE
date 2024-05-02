@@ -211,6 +211,15 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OPTIONS"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a985b45-3d52-4cb0-a11c-61840c03262f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -235,6 +244,17 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""action"": ""RELOAD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43137567-3bdd-4ef6-9d3e-ec88d882c3d1"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OPTIONS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,6 +270,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         m_MENU = asset.FindActionMap("MENU", throwIfNotFound: true);
         m_MENU_QUIT = m_MENU.FindAction("QUIT", throwIfNotFound: true);
         m_MENU_RELOAD = m_MENU.FindAction("RELOAD", throwIfNotFound: true);
+        m_MENU_OPTIONS = m_MENU.FindAction("OPTIONS", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -375,12 +396,14 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     private List<IMENUActions> m_MENUActionsCallbackInterfaces = new List<IMENUActions>();
     private readonly InputAction m_MENU_QUIT;
     private readonly InputAction m_MENU_RELOAD;
+    private readonly InputAction m_MENU_OPTIONS;
     public struct MENUActions
     {
         private @PlayerInputControls m_Wrapper;
         public MENUActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @QUIT => m_Wrapper.m_MENU_QUIT;
         public InputAction @RELOAD => m_Wrapper.m_MENU_RELOAD;
+        public InputAction @OPTIONS => m_Wrapper.m_MENU_OPTIONS;
         public InputActionMap Get() { return m_Wrapper.m_MENU; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -396,6 +419,9 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @RELOAD.started += instance.OnRELOAD;
             @RELOAD.performed += instance.OnRELOAD;
             @RELOAD.canceled += instance.OnRELOAD;
+            @OPTIONS.started += instance.OnOPTIONS;
+            @OPTIONS.performed += instance.OnOPTIONS;
+            @OPTIONS.canceled += instance.OnOPTIONS;
         }
 
         private void UnregisterCallbacks(IMENUActions instance)
@@ -406,6 +432,9 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @RELOAD.started -= instance.OnRELOAD;
             @RELOAD.performed -= instance.OnRELOAD;
             @RELOAD.canceled -= instance.OnRELOAD;
+            @OPTIONS.started -= instance.OnOPTIONS;
+            @OPTIONS.performed -= instance.OnOPTIONS;
+            @OPTIONS.canceled -= instance.OnOPTIONS;
         }
 
         public void RemoveCallbacks(IMENUActions instance)
@@ -433,5 +462,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     {
         void OnQUIT(InputAction.CallbackContext context);
         void OnRELOAD(InputAction.CallbackContext context);
+        void OnOPTIONS(InputAction.CallbackContext context);
     }
 }

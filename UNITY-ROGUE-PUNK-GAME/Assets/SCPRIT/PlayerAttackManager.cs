@@ -13,6 +13,7 @@ public class PlayerAttackManager : MonoBehaviour
     public Vector3 offset;
 
     public LayerMask enemyMask;
+    [HideInInspector]
     public int attackCount;
     // Start is called before the first frame update
     void Start()
@@ -28,11 +29,18 @@ public class PlayerAttackManager : MonoBehaviour
 
     public void Attack()
     {
-        Collider[] hitEnemy = Physics.OverlapSphere(transform.position, attackRange, enemyMask);
+        Collider[] hitEnemy = Physics.OverlapSphere(transform.position + offset, attackRange, enemyMask);
         foreach(Collider collider in hitEnemy)
         {
-            Debug.Log("HIT" + damage);
-            collider.GetComponent<EnemyHealthManager>().TakeDamage(damage);
+            if(attackCount == attackClip.Length)
+            {
+                collider.GetComponent<EnemyHealthManager>().TakeDamage(damage * 2);
+            }
+
+            else
+            {
+                collider.GetComponent<EnemyHealthManager>().TakeDamage(damage);
+            }
         }
     }
 

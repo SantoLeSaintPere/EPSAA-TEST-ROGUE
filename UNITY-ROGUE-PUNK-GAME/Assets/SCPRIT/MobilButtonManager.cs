@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class MobilButtonManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject mobilPanel;
     public bool isMobil;
     void Start()
     {
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
-            gameObject.SetActive(false);
+            mobilPanel.SetActive(false);
             isMobil = false;
         }
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            gameObject.SetActive(true);
+            mobilPanel.SetActive(true);
             isMobil = true;
         }
     }

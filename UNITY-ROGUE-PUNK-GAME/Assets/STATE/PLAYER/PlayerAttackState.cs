@@ -15,7 +15,7 @@ public class PlayerAttackState : PlayerBaseState
         if(stateMachine.attackManager.attackCount == 0)
         {
 
-            stateMachine.animator.Play("ATTACK");
+            stateMachine.animator.Play("ATTACK-1");
         }
 
 
