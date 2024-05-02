@@ -31,10 +31,8 @@ public class EnemyAttackState : EnemyBaseState
 
         if (timerParry > parryMin && timerParry < parryMax)
         {
-            Debug.Log("PARRY !!!");
             if(stateMachine.player.GetComponent<PlayerShieldManager>().isParryOn)
             {
-                Debug.Log(timerParry);
                 // EFFECT
                 stateMachine.NextState(new EnemyHitState(stateMachine));
             }
@@ -44,7 +42,6 @@ public class EnemyAttackState : EnemyBaseState
 
         if (timer >= stateMachine.attackManager.attackClip.length)
         {
-            Debug.Log(timer);
             stateMachine.NextState(new EnemyMoveState(stateMachine));
         }
     }

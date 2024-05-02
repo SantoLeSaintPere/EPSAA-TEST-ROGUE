@@ -36,7 +36,6 @@ public class EnemyHealthManager : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("DEATH STATE");
             if(playerHealthManager.health < 3)
             {
 
