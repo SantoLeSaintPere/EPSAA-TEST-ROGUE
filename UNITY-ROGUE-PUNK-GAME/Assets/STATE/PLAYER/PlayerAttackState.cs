@@ -38,11 +38,11 @@ public class PlayerAttackState : PlayerBaseState
     {
         timer += time;
 
+
         if (stateMachine.attackManager.attackCount != stateMachine.attackManager.attackClip.Length-1)
         {
-            if (timer >= stateMachine.attackManager.timerToRedoAttack[stateMachine.attackManager.attackCount]
-
-                && stateMachine.inputReader.inputcontrols.Player.ATTACK.WasPerformedThisFrame())
+            float timerToRedo = stateMachine.attackManager.timerToRedoAttack[stateMachine.attackManager.attackCount] / 60;
+            if (timer >= timerToRedo  && stateMachine.inputReader.inputcontrols.Player.ATTACK.WasPerformedThisFrame())
             {
                 stateMachine.attackManager.attackCount++;
                 stateMachine.NextState(new PlayerAttackState(stateMachine));

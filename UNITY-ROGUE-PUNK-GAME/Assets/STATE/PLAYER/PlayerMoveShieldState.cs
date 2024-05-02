@@ -8,12 +8,23 @@ public class PlayerMoveShieldState : PlayerBaseState
     {
     }
 
+    float timer;
+
     public override void InStart()
     {
+        timer = 0;
+        stateMachine.shieldManager.isParryOn = true;
     }
 
     public override void InUpdate(float time)
     {
+        timer += time;
+        if(timer >= stateMachine.shieldManager.parryWindow)
+        {
+            stateMachine.shieldManager.isParryOn = false;
+            timer = stateMachine.shieldManager.parryWindow;
+        }
+
         CheckForAttack();
         ShieldMove();
         Facing();
@@ -38,5 +49,6 @@ public class PlayerMoveShieldState : PlayerBaseState
 
     public override void OnExit()
     {
+        stateMachine.shieldManager.isParryOn = false;
     }
 }

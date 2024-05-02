@@ -19,7 +19,8 @@ public class EnemyStateMachine : StateMachine
     public Transform player;
 
     public EnemyType enemyType;
-
+    public SpriteRenderer spriteRenderer;
+    [Header("SPEEDS")]
     public float speed = 2.5f;
     public float turnSpeed = 5f;
 

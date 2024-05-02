@@ -12,6 +12,8 @@ public class EnemyAttackManager : MonoBehaviour
     public float stopingDistance;
 
 
+
+
     [Header("ATTACK SET UP")]
     public AnimationClip attackClip;
     public float attackRange;
@@ -19,6 +21,10 @@ public class EnemyAttackManager : MonoBehaviour
 
     [Header("ATTACK-POINT")]
     public Transform attackPoint;
+
+    [Header("PARRY-SETUP")]
+    public float parryMinTime;
+    public float parryMaxTime;
 
     [Header("IF SHOOTER")]
     public EnemyShooterManager shooterManager;
@@ -38,6 +44,26 @@ public class EnemyAttackManager : MonoBehaviour
         isInAttackZone = Physics.CheckSphere(transform.position + offset, attackDetectionZone, playerLayer);
     }
 
+    public void Attack()
+    {
+        Collider[] hitPlayer = Physics.OverlapSphere(attackPoint.position + offset, attackRange, playerLayer);
+        foreach (Collider collider in hitPlayer)
+        {
+
+            if (collider.GetComponent<PlayerShieldManager>().canUseShield)
+            {
+                collider.GetComponent<PlayerShieldManager>().TakeShieldDamage(damage);
+            }
+
+            else
+            {
+
+                Debug.Log("HIT PLAYER");
+                collider.GetComponent<PlayerHealthManager>().TakeDamage(damage);
+            }
+        }
+    }
+
     public void Shoot()
     {
         GameObject bulletInst = Instantiate(shooterManager.bullet, attackPoint.position, attackPoint.rotation);
@@ -51,7 +77,7 @@ public class EnemyAttackManager : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position + offset, attackDetectionZone);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + offset, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position + offset, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere (transform.position, stopingDistance);
     }

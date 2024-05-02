@@ -11,7 +11,7 @@ public class EnemyHitState : EnemyBaseState
     float timer;
     public override void InStart()
     {
-
+        stateMachine.animator.Play("HIT");
     }
 
     public override void InUpdate(float time)

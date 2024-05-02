@@ -13,11 +13,13 @@ public class EnemyHealthManager : MonoBehaviour
     EnemyStateMachine stateMachine;
 
     public GameObject[] objectToDrop;
+
+    PlayerHealthManager playerHealthManager;
     // Start is called before the first frame update
     void Start()
     {
         stateMachine = GetComponent<EnemyStateMachine>();
-
+        playerHealthManager = FindObjectOfType<PlayerHealthManager>();
         maxHealth = life.Length;
         health = maxHealth;
     }
@@ -35,7 +37,11 @@ public class EnemyHealthManager : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("DEATH STATE");
-            Instantiate(objectToDrop[0], transform.position, Quaternion.identity);
+            if(playerHealthManager.health < 3)
+            {
+
+                Instantiate(objectToDrop[0], transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
 

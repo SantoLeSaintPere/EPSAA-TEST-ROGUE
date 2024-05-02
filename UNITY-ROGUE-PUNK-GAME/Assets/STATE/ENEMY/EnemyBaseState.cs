@@ -28,9 +28,24 @@ public abstract class EnemyBaseState : State
 
     public void FacePlayer()
     {
+        Vector3 dir = stateMachine.player.position - stateMachine.transform.position;
+        if(dir.x < 0)
+        {
+            stateMachine.spriteRenderer.flipX = true;
+        }
+
+        else
+        {
+            stateMachine.spriteRenderer.flipX = false;
+        }
+    }
+
+    public void ShootPoiintFacePlayer()
+    {
         Quaternion lookRot = Quaternion.LookRotation(stateMachine.player.position - stateMachine.attackManager.transform.position, Vector3.up);
         stateMachine.attackManager.shooterManager.shootPointHolder.rotation = lookRot;
     }
+
 
     public void AimPlayer()
     {

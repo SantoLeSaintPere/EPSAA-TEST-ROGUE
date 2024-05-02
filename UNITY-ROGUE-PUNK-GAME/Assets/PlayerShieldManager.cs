@@ -15,6 +15,8 @@ public class PlayerShieldManager : MonoBehaviour
     public int health, maxHealth;
 
     float timer;
+    public float parryWindow = 1f;
+    public bool isParryOn;
     // Start is called before the first frame update
     void Start()
     {

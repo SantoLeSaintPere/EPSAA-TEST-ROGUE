@@ -32,8 +32,10 @@ public class PlayerAttackManager : MonoBehaviour
         Collider[] hitEnemy = Physics.OverlapSphere(transform.position + offset, attackRange, enemyMask);
         foreach(Collider collider in hitEnemy)
         {
-            if(attackCount == attackClip.Length)
+            Debug.Log(attackCount);
+            if(attackCount == attackClip.Length-1)
             {
+                Debug.Log("COMBO-DAMAGE");
                 collider.GetComponent<EnemyHealthManager>().TakeDamage(damage * 2);
             }
 
