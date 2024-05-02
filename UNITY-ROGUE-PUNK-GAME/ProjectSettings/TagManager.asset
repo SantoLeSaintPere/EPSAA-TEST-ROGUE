@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ENEMY
   - PLAYER
+  - HEALTH-BOX
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - WALL
   - ENEMY
   - PLAYER
-  - 
+  - HEALTH-BOX
   - 
   - 
   - 

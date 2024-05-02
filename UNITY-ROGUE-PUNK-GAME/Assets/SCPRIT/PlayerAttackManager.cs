@@ -36,12 +36,23 @@ public class PlayerAttackManager : MonoBehaviour
             if(attackCount == attackClip.Length-1)
             {
                 Debug.Log("COMBO-DAMAGE");
-                collider.GetComponent<EnemyHealthManager>().TakeDamage(damage * 2);
+                if(collider.GetComponent<EnemyHealthManager>() != null)
+                {
+                    collider.GetComponent<EnemyHealthManager>().TakeDamage(damage * 2);
+                }
             }
 
             else
             {
-                collider.GetComponent<EnemyHealthManager>().TakeDamage(damage);
+                if (collider.GetComponent<EnemyHealthManager>() != null)
+                {
+                    collider.GetComponent<EnemyHealthManager>().TakeDamage(damage);
+                }
+            }
+
+            if(collider.GetComponent<HealthBox>() != null)
+            {
+                collider.GetComponent<HealthBox>().GiveLife();
             }
         }
     }

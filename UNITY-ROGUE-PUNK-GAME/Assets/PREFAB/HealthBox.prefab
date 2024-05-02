@@ -109,10 +109,9 @@ GameObject:
   - component: {fileID: 1692771936769403675}
   - component: {fileID: 6493077702741926435}
   - component: {fileID: 1713896122246964113}
-  - component: {fileID: -1528567202164128895}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBox
-  m_TagString: Untagged
+  m_TagString: HEALTH-BOX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,30 +165,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b505f6369eb8b754eacadee277365ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-1528567202164128895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831237997463490419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c0eb0c46845fc48833fa1d677f9e5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ontrigger:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1713896122246964113}
-        m_TargetAssemblyTypeName: HealthBox, Assembly-CSharp
-        m_MethodName: GiveLife
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
