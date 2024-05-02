@@ -8,7 +8,7 @@ public class PlayerAttackManager : MonoBehaviour
     public float attackRange;
 
     public AnimationClip[] attackClip;
-    public float[] timerToRedoAttack;
+    public float[] frameToCombo;
 
     public Vector3 offset;
 

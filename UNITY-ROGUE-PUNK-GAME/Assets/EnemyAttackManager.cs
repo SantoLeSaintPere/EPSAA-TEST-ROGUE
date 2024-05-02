@@ -23,8 +23,8 @@ public class EnemyAttackManager : MonoBehaviour
     public Transform attackPoint;
 
     [Header("PARRY-SETUP")]
-    public float parryMinTime;
-    public float parryMaxTime;
+    public float parryMinFrame;
+    public float parryMaxFrame;
 
     [Header("IF SHOOTER")]
     public EnemyShooterManager shooterManager;
@@ -66,7 +66,7 @@ public class EnemyAttackManager : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bulletInst = Instantiate(shooterManager.bullet, attackPoint.position, attackPoint.rotation);
+        GameObject bulletInst = Instantiate(shooterManager.bullet, shooterManager.shootPoint.position, shooterManager.shootPoint.rotation);
         bulletInst.GetComponent<Bullet>().damage = damage;
         bulletInst.GetComponent<Bullet>().speed = shooterManager.speed;
         bulletInst.GetComponent<Bullet>().timeToDestroy = shooterManager.timeToDestroy;
@@ -90,7 +90,7 @@ public class EnemyShooterManager
     public float coolDown = 0.5f;
 
     public Transform shootPointHolder;
-    public GameObject muzzle;
+    public Transform shootPoint;
 
     [Header("BULLET")]
     public GameObject bullet;

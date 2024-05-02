@@ -24,8 +24,8 @@ public class EnemyAttackState : EnemyBaseState
 
     public override void InUpdate(float time)
     {
-        float parryMin = stateMachine.attackManager.parryMinTime / 60;
-        float parryMax = stateMachine.attackManager.parryMaxTime / 60;
+        float parryMin = stateMachine.attackManager.parryMinFrame / 60;
+        float parryMax = stateMachine.attackManager.parryMaxFrame / 60;
         timerParry += time;
         
 

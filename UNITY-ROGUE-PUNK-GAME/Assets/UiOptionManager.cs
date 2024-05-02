@@ -79,14 +79,14 @@ public class UiOptionManager : MonoBehaviour
 
         if (use)
         {
-            stickPanel.SetActive(true);
-            buttonPanel.SetActive(false);
+            stickPanel.SetActive(false);
+            buttonPanel.SetActive(true);
         }
 
         else
         {
-            stickPanel.SetActive(false);
-            buttonPanel.SetActive(true);
+            stickPanel.SetActive(true);
+            buttonPanel.SetActive(false);
         }
     }
 }

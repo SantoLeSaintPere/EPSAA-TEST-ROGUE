@@ -41,7 +41,7 @@ public class PlayerAttackState : PlayerBaseState
 
         if (stateMachine.attackManager.attackCount != stateMachine.attackManager.attackClip.Length-1)
         {
-            float timerToRedo = stateMachine.attackManager.timerToRedoAttack[stateMachine.attackManager.attackCount] / 60;
+            float timerToRedo = stateMachine.attackManager.frameToCombo[stateMachine.attackManager.attackCount] / 60;
             if (timer >= timerToRedo  && stateMachine.inputReader.inputcontrols.Player.ATTACK.WasPerformedThisFrame())
             {
                 stateMachine.attackManager.attackCount++;

@@ -28,9 +28,20 @@ public class Bullet : MonoBehaviour
         Debug.Log("HIT");
         if (other.CompareTag("Player"))
         {
+
             if(other.GetComponent<PlayerShieldManager>().canUseShield)
             {
-                other.GetComponent<PlayerShieldManager>().TakeShieldDamage(damage);
+
+                if (other.GetComponent<PlayerShieldManager>().isParryOn)
+                {
+                    Destroy(gameObject);
+                }
+
+
+                else
+                {
+                    other.GetComponent<PlayerShieldManager>().TakeShieldDamage(damage);
+                }
             }
 
             else
