@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-05-02T15:16:57.418Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="P6PI2Y8EDUyncCVS4-KU" version="24.2.5" type="device">
+<mxfile host="Electron" modified="2024-05-09T19:01:36.552Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="LakXvMk64BlOpZtzMkt5" version="24.2.5" type="device">
   <diagram name="Page-1" id="lqWQIH8dFossH2WYCpR8">
-    <mxGraphModel dx="2954" dy="1196" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1689" dy="1262" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -115,8 +115,11 @@
         <mxCell id="AZg7I3DC48g_nCe4Q7ee-33" value="CHOICE BONUS BEETWEN LEVELS" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="2110" y="464.68000000000006" width="130" height="72.66" as="geometry" />
         </mxCell>
-        <mxCell id="yF3EjDQXDw7K3xE8vz8F-1" value="BUY IN HUB" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="yF3EjDQXDw7K3xE8vz8F-1" value="BUY IN HUB" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1730" y="537.34" width="130" height="32.66" as="geometry" />
+        </mxCell>
+        <mxCell id="23XVueIx5mkHHdpOZdPk-1" value="CHOICE&amp;nbsp;&lt;div&gt;SLASHER TOP DOWN&lt;/div&gt;&lt;div&gt;SHOOTER SIDE SCROLL&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="430" width="230" height="230" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
