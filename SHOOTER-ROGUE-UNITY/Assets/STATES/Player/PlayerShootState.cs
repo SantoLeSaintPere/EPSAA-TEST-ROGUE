@@ -10,6 +10,7 @@ public class PlayerShootState : PlayerBaseState
     float timer;
     public override void InStart()
     {
+        stateMachine.shootManager.ShowGun();
         stateMachine.animator.Play("Shoot");
         timer = 0;
     }
@@ -18,7 +19,8 @@ public class PlayerShootState : PlayerBaseState
     {
         timer += time;
 
-        if(timer >= stateMachine.attackManager.attackTime / 60)
+        if(timer >= stateMachine.shootManager.fireRate)
+            // 60)
         {
             stateMachine.NextState(new PlayerMoveState(stateMachine));
         }
@@ -27,5 +29,6 @@ public class PlayerShootState : PlayerBaseState
 
     public override void OnExit()
     {
+        stateMachine.shootManager.HideGun();
     }
 }

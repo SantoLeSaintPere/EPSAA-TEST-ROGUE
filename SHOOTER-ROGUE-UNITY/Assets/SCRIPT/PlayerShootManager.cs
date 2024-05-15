@@ -15,18 +15,36 @@ public class PlayerShootManager : MonoBehaviour
     public Vector3 bulletDir;
     public float bulletTimeToDestroy = 2;
 
+    [Header("WEAPONNERY")]
+    public GameObject gunHand;
+    public GameObject gunBack;
+
     [HideInInspector]
     public float shootTimer;
     // Start is called before the first frame update
     void Start()
     {
         shootTimer = fireRate;
+        HideGun();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    
+    public void HideGun()
+    {
+        gunHand.SetActive(false);
+        gunBack.SetActive(true);
+    }
+
+
+    public void ShowGun()
+    {
+        gunHand.SetActive(true);
+        gunBack.SetActive(false);
     }
 
     public void Shoot()

@@ -40,12 +40,14 @@ public abstract class PlayerBaseState : State
     {
             if (stateMachine.inputReader.dirX > 0)
             {
+                stateMachine.playerBody.localRotation = Quaternion.Euler(0, -stateMachine.playerBodyRot, 0);
                 stateMachine.holder.localRotation = Quaternion.Euler(0, 0, 0);
             }
 
             if (stateMachine.inputReader.dirX < 0)
             {
-                stateMachine.holder.localRotation = Quaternion.Euler(0, 180, 0);
+                stateMachine.playerBody.localRotation = Quaternion.Euler(0, stateMachine.playerBodyRot, 0);
+                stateMachine.holder.localRotation = Quaternion.Euler(0,180 , 0);
             }
     }
 

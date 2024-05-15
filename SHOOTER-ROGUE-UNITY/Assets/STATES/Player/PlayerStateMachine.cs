@@ -21,6 +21,9 @@ public class PlayerStateMachine : StateMachine
     [HideInInspector]
     public Animator animator;
 
+    public float playerBodyRot = 60f;
+    public Transform playerBody;
+
     public Transform holder;
 
     [Header("MOTION")]
