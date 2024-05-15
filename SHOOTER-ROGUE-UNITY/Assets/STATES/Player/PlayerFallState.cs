@@ -18,15 +18,7 @@ public class PlayerFallState : PlayerBaseState
     {
 
         CheckForShoot(time);
-        if (stateMachine.autoRun)
-        {
-            FallForAutoMove();
-        }
-
-        else
-        {
             Fall();
-        }
 
         if(stateMachine.groundDetector.isGrounded)
         {

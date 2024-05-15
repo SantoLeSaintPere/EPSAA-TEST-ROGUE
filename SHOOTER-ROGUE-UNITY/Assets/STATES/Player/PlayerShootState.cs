@@ -2,26 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : PlayerBaseState
+public class PlayerShootState : PlayerBaseState
 {
-    public PlayerAttackState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerShootState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
     float timer;
     public override void InStart()
     {
-        stateMachine.animator.Play("Attack");
+        stateMachine.animator.Play("Shoot");
         timer = 0;
     }
 
     public override void InUpdate(float time)
     {
         timer += time;
-
-        if (stateMachine.autoRun)
-        {
-            AutoMove();
-        }
 
         if(timer >= stateMachine.attackManager.attackTime / 60)
         {

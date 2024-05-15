@@ -16,19 +16,14 @@ public class PlayerStateMachine : StateMachine
     public PlayerAttackManager attackManager;
     [HideInInspector]
     public PlayerShootManager shootManager;
-    [HideInInspector]
-    public PlayerDirectionManager directionManager;
 
 
-    [HideInInspector]
-    public SpriteRenderer spriteRenderer;
     [HideInInspector]
     public Animator animator;
 
     public Transform holder;
 
     [Header("MOTION")]
-    public bool autoRun;
     public float speed = 5f;
 
 
@@ -43,9 +38,7 @@ public class PlayerStateMachine : StateMachine
         groundDetector = GetComponent<PlayerGroundDetector>();
         attackManager = GetComponent<PlayerAttackManager>();
         shootManager = GetComponent<PlayerShootManager>();
-        directionManager = GetComponent<PlayerDirectionManager>();
 
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
 
 

@@ -17,15 +17,7 @@ public class PlayerJumpState : PlayerBaseState
     public override void InUpdate(float time)
     {
         CheckForShoot(time);
-        if (stateMachine.autoRun)
-        {
-            JumpForAutoMove();
-        }
-
-        else
-        {
             Jump();
-        }
 
         timer += time;
         if(timer >= stateMachine.forceReceiver.jumpTime)

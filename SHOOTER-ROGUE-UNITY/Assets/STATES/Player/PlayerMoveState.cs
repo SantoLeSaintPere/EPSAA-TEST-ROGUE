@@ -14,16 +14,7 @@ public class PlayerMoveState : PlayerBaseState
 
     public override void InUpdate(float time)
     {
-        if(stateMachine.autoRun)
-        {
-            stateMachine.animator.Play("Run");
-            AutoMove();
-        }
-
-        else
-        {
             Move();
-        }
         CheckForShoot(time);
 
         CheckForJump();

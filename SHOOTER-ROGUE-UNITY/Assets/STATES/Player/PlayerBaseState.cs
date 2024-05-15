@@ -33,61 +33,23 @@ public abstract class PlayerBaseState : State
     {
         if (stateMachine.inputReader.inputControls.Player.ATTACK.WasPerformedThisFrame())
         {
-            stateMachine.NextState(new PlayerAttackState(stateMachine));
+            stateMachine.NextState(new PlayerShootState(stateMachine));
         }
     }
     protected void CheckDirection()
     {
-        if(stateMachine.directionManager.upDir)
-        {
-
             if (stateMachine.inputReader.dirX > 0)
             {
-                stateMachine.spriteRenderer.flipX = true;
-                stateMachine.holder.localRotation = Quaternion.Euler(0, 180, 0);
-            }
-
-            if (stateMachine.inputReader.dirX < 0)
-            {
-                stateMachine.spriteRenderer.flipX = false;
-                stateMachine.holder.localRotation = Quaternion.Euler(0, 0, 0);
-            }
-        }
-
-        else
-        {
-            if (stateMachine.inputReader.dirX > 0)
-            {
-                stateMachine.spriteRenderer.flipX = false;
                 stateMachine.holder.localRotation = Quaternion.Euler(0, 0, 0);
             }
 
             if (stateMachine.inputReader.dirX < 0)
             {
-                stateMachine.spriteRenderer.flipX = true;
                 stateMachine.holder.localRotation = Quaternion.Euler(0, 180, 0);
             }
-        }
     }
 
-    protected void AutoMove()
-    {
-        stateMachine.characterController.Move(stateMachine.transform.right * stateMachine.speed * Time.deltaTime);
-    }
 
-    protected void JumpForAutoMove()
-    {
-
-        stateMachine.characterController.Move((stateMachine.transform.up * stateMachine.forceReceiver.jumpForce) * Time.deltaTime);
-        stateMachine.characterController.Move(stateMachine.transform.right * stateMachine.speed * Time.deltaTime);
-    }
-
-    protected void FallForAutoMove()
-    {
-
-        stateMachine.characterController.Move((-stateMachine.transform.up * stateMachine.forceReceiver.gravityMultiplier) * Time.deltaTime);
-        stateMachine.characterController.Move(stateMachine.transform.right * stateMachine.speed * Time.deltaTime);
-    }
 
     protected void Move()
     {

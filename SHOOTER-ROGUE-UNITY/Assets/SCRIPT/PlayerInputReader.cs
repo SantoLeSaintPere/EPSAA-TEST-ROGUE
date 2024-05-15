@@ -36,7 +36,7 @@ public class PlayerInputReader : MonoBehaviour
     void Update()
     {
         dirX = inputControls.Player.MOVE.ReadValue<float>();
-
+        dir = new Vector3(dirX, 0, 0);
         isMoving = dirX !=0;
 
         isShooting = inputControls.Player.SHOOT.IsPressed();
