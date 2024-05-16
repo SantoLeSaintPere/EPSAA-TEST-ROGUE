@@ -10,6 +10,8 @@ public class PlayerShootState : PlayerBaseState
     public override void InStart()
     {
         stateMachine.shootManager.ShowGun();
+        stateMachine.shootManager.Shoot();
+        stateMachine.shootManager.shootTimer = 0;
     }
 
     public override void InUpdate(float time)

@@ -5,14 +5,13 @@ using UnityEngine.UI;
 
 public class EnemyHealthManager : MonoBehaviour
 {
-    Image healthBar;
+    public Image healthBar;
     public float health;
     public float maxHealth = 10f;
 
     private void Start()
     {
         health = maxHealth;
-        healthBar = GetComponentInChildren<Image>();
     }
 
     private void Update()

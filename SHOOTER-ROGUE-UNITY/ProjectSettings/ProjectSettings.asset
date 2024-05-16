@@ -157,7 +157,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.DefaultCompany.DINORUNGAMEUNITY
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -282,7 +283,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: ceed99f281000684188da4a0bcc5604c, type: 3}
+      m_Icon: {fileID: 2800000, guid: 5a3644e4d196d5142a76573d449c02b6, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

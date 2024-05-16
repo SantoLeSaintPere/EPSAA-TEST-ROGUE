@@ -54,6 +54,11 @@ public abstract class PlayerBaseState : State
         {
             stateMachine.animator.Play("Idle");
         }
+
+        if(!stateMachine.groundDetector.isGrounded)
+        {
+            stateMachine.characterController.Move((-stateMachine.transform.up * stateMachine.forceReceiver.gravityMultiplier) * Time.deltaTime);
+        }
     }
 
     protected void ShootBehaviour(float time)
@@ -101,7 +106,7 @@ public abstract class PlayerBaseState : State
     {
         CheckDirection();
         stateMachine.characterController.Move((stateMachine.transform.up * stateMachine.forceReceiver.jumpForce)  * Time.deltaTime);
-        stateMachine.characterController.Move(stateMachine.inputReader.dir * stateMachine.speed  * Time.deltaTime);
+        stateMachine.characterController.Move(stateMachine.inputReader.dir * (stateMachine.speed *2)  * Time.deltaTime);
     }
 
     protected void Fall()
