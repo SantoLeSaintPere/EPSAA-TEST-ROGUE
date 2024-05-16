@@ -18,7 +18,6 @@ public class PlayerMoveState : PlayerBaseState
         CheckForShoot(time);
 
         CheckForJump();
-        CheckForAttack();
     }
 
     public override void OnExit()

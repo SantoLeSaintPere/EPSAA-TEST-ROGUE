@@ -8,16 +8,16 @@ public class PlayerFallState : PlayerBaseState
     {
     }
 
-    float timer;
+    float timer, timer2;
     public override void InStart()
     {
         timer = 0;
+        timer2 = 0;
     }
 
     public override void InUpdate(float time)
     {
-
-        CheckForShoot(time);
+        timer2 += time; 
             Fall();
 
         if(stateMachine.groundDetector.isGrounded)
@@ -29,6 +29,12 @@ public class PlayerFallState : PlayerBaseState
             {
                 stateMachine.NextState(new PlayerMoveState(stateMachine));
             }
+        }
+
+        if(!stateMachine.groundDetector.isGrounded && timer2 >= stateMachine.forceReceiver.fallMaxTime)
+        {
+            stateMachine.transform.position = stateMachine.forceReceiver.lastPos;
+            stateMachine.NextState(new PlayerMoveState(stateMachine));
         }
     }
 

@@ -46,15 +46,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ATTACK"",
-                    ""type"": ""Button"",
-                    ""id"": ""325f3e3d-99e3-4109-8909-bb57a3867063"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""SHOOT"",
                     ""type"": ""Button"",
                     ""id"": ""ec65f782-68c9-4cce-8305-bbea3ee468af"",
@@ -144,30 +135,8 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7177be5c-72f8-410d-a7b7-1eb1c60c6b47"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ATTACK"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""eea5e83b-e723-4f34-993a-909e0792dbd4"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ATTACK"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d04a742d-f718-4fe8-828d-13dc0fd0b512"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -178,7 +147,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9f997d1d-ba76-44af-af85-50421cd80da2"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -195,7 +164,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_MOVE = m_Player.FindAction("MOVE", throwIfNotFound: true);
         m_Player_JUMP = m_Player.FindAction("JUMP", throwIfNotFound: true);
-        m_Player_ATTACK = m_Player.FindAction("ATTACK", throwIfNotFound: true);
         m_Player_SHOOT = m_Player.FindAction("SHOOT", throwIfNotFound: true);
     }
 
@@ -260,7 +228,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_MOVE;
     private readonly InputAction m_Player_JUMP;
-    private readonly InputAction m_Player_ATTACK;
     private readonly InputAction m_Player_SHOOT;
     public struct PlayerActions
     {
@@ -268,7 +235,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MOVE => m_Wrapper.m_Player_MOVE;
         public InputAction @JUMP => m_Wrapper.m_Player_JUMP;
-        public InputAction @ATTACK => m_Wrapper.m_Player_ATTACK;
         public InputAction @SHOOT => m_Wrapper.m_Player_SHOOT;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -285,9 +251,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @JUMP.started += instance.OnJUMP;
             @JUMP.performed += instance.OnJUMP;
             @JUMP.canceled += instance.OnJUMP;
-            @ATTACK.started += instance.OnATTACK;
-            @ATTACK.performed += instance.OnATTACK;
-            @ATTACK.canceled += instance.OnATTACK;
             @SHOOT.started += instance.OnSHOOT;
             @SHOOT.performed += instance.OnSHOOT;
             @SHOOT.canceled += instance.OnSHOOT;
@@ -301,9 +264,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @JUMP.started -= instance.OnJUMP;
             @JUMP.performed -= instance.OnJUMP;
             @JUMP.canceled -= instance.OnJUMP;
-            @ATTACK.started -= instance.OnATTACK;
-            @ATTACK.performed -= instance.OnATTACK;
-            @ATTACK.canceled -= instance.OnATTACK;
             @SHOOT.started -= instance.OnSHOOT;
             @SHOOT.performed -= instance.OnSHOOT;
             @SHOOT.canceled -= instance.OnSHOOT;
@@ -328,7 +288,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     {
         void OnMOVE(InputAction.CallbackContext context);
         void OnJUMP(InputAction.CallbackContext context);
-        void OnATTACK(InputAction.CallbackContext context);
         void OnSHOOT(InputAction.CallbackContext context);
     }
 }

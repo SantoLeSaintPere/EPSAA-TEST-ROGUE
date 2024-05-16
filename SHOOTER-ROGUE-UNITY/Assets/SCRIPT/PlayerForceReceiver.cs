@@ -11,4 +11,8 @@ public class PlayerForceReceiver : MonoBehaviour
     public float jumpTime;
 
     public float landFrimeRate = 30;
+
+    [Header("Fall")]
+    public Vector3 lastPos;
+    public float fallMaxTime = 3;
 }

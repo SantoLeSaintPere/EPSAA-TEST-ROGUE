@@ -10,13 +10,13 @@ public class PlayerJumpState : PlayerBaseState
     float timer;
     public override void InStart()
     {
+        stateMachine.forceReceiver.lastPos = stateMachine.transform.position;
         stateMachine.animator.Play("Jump");
         timer = 0;
     }
 
     public override void InUpdate(float time)
     {
-        CheckForShoot(time);
             Jump();
 
         timer += time;

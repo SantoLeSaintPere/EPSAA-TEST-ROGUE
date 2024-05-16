@@ -16,26 +16,10 @@ public abstract class PlayerBaseState : State
     {
         if(stateMachine.inputReader.isShooting)
         {
-            if(stateMachine.shootManager.shootTimer >= stateMachine.shootManager.fireRate)
-            {
-                stateMachine.shootManager.Shoot();
-                stateMachine.shootManager.shootTimer = 0;
-            }
-
-            if(stateMachine.shootManager.shootTimer != stateMachine.shootManager.fireRate)
-            {
-                stateMachine.shootManager.shootTimer += time;
-            }
-        }
-    }
-
-    protected void CheckForAttack()
-    {
-        if (stateMachine.inputReader.inputControls.Player.ATTACK.WasPerformedThisFrame())
-        {
             stateMachine.NextState(new PlayerShootState(stateMachine));
         }
     }
+
     protected void CheckDirection()
     {
             if (stateMachine.inputReader.dirX > 0)
@@ -69,6 +53,39 @@ public abstract class PlayerBaseState : State
         else
         {
             stateMachine.animator.Play("Idle");
+        }
+    }
+
+    protected void ShootBehaviour(float time)
+    {
+        if (stateMachine.shootManager.shootTimer >= stateMachine.shootManager.fireRate)
+        {
+            stateMachine.shootManager.Shoot();
+            stateMachine.shootManager.shootTimer = 0;
+        }
+
+        if (stateMachine.shootManager.shootTimer != stateMachine.shootManager.fireRate)
+        {
+            stateMachine.shootManager.shootTimer += time;
+        }
+    }
+
+    protected void MoveShoot()
+    {
+        CheckDirection();
+
+        if (stateMachine.inputReader.isMoving)
+        {
+            stateMachine.animator.Play("Run-Shoot");
+            if (stateMachine.groundDetector.canWalkGround)
+            {
+                stateMachine.characterController.Move(stateMachine.inputReader.dir * stateMachine.speed * Time.deltaTime);
+            }
+        }
+
+        else
+        {
+            stateMachine.animator.Play("Shoot");
         }
     }
 
