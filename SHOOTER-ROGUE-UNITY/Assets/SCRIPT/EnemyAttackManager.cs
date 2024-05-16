@@ -9,11 +9,13 @@ public class EnemyAttackManager : MonoBehaviour
 
     public LayerMask playerMask;
     public bool isContact;
+
+    public int damage = 1;
     private void OnTriggerEnter(Collider other)
     {
         if(isContact && other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealthManager>().TakeDamage();
+            other.GetComponent<PlayerHealthManager>().TakeDamage(damage);
         }
     }
 
@@ -22,7 +24,7 @@ public class EnemyAttackManager : MonoBehaviour
         Collider[] hitPlayer = Physics.OverlapSphere(transform.position + offset, attackRange, playerMask);
         foreach (Collider collider in hitPlayer)
         {
-            collider.GetComponent<PlayerHealthManager>().TakeDamage();
+            collider.GetComponent<PlayerHealthManager>().TakeDamage(damage);
         }
     }
 
