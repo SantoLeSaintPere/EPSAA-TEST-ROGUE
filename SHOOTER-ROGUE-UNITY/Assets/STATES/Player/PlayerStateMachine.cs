@@ -21,14 +21,13 @@ public class PlayerStateMachine : StateMachine
     [HideInInspector]
     public Animator animator;
 
-    public float playerBodyRot = 60f;
-    public Transform playerBody;
-
-    public Transform holder;
-
     [Header("MOTION")]
     public float speed = 5f;
 
+    [Header("BODY")]
+    public Transform playerBody;
+    public Transform holder;
+    public float playerBodyRot = 60f;
 
 
     // Start is called before the first frame update
