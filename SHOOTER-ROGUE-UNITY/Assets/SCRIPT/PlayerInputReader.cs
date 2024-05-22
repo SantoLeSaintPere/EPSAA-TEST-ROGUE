@@ -11,7 +11,8 @@ public class PlayerInputReader : MonoBehaviour
     public bool isMoving;
 
     public bool isShooting;
-
+    public bool isJumping;
+    public bool isCrunching;
     private void Awake()
     {
         inputControls = new PlayerInputControls();
@@ -40,6 +41,8 @@ public class PlayerInputReader : MonoBehaviour
         isMoving = dirX !=0;
 
         isShooting = inputControls.Player.SHOOT.IsPressed();
+        isJumping = inputControls.Player.JUMP.IsPressed();
+        isCrunching = inputControls.Player.CRUNCH.IsPressed();
     }
 
 }

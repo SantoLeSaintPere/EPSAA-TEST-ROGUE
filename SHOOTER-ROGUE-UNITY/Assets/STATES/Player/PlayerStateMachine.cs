@@ -16,6 +16,8 @@ public class PlayerStateMachine : StateMachine
     public PlayerAttackManager attackManager;
     [HideInInspector]
     public PlayerShootManager shootManager;
+    [HideInInspector]
+    public PlayerPlateformDetector plateformDetector;
 
 
     [HideInInspector]
@@ -40,6 +42,7 @@ public class PlayerStateMachine : StateMachine
         groundDetector = GetComponent<PlayerGroundDetector>();
         attackManager = GetComponent<PlayerAttackManager>();
         shootManager = GetComponent<PlayerShootManager>();
+        plateformDetector = GetComponent<PlayerPlateformDetector>();
 
         animator = GetComponentInChildren<Animator>();
 

@@ -12,7 +12,7 @@ public abstract class PlayerBaseState : State
     }
 
 
-    protected  void CheckForShoot(float time)
+    protected  void CheckForShoot()
     {
         if(stateMachine.inputReader.isShooting)
         {
@@ -79,19 +79,20 @@ public abstract class PlayerBaseState : State
     {
         CheckDirection();
 
-        if (stateMachine.inputReader.isMoving)
-        {
-            stateMachine.animator.Play("Run-Shoot");
-            if (stateMachine.groundDetector.canWalkGround)
+            if (stateMachine.inputReader.isMoving)
             {
-                stateMachine.characterController.Move(stateMachine.inputReader.dir * stateMachine.speed * Time.deltaTime);
+                stateMachine.animator.Play("Run-Shoot");
+                if (stateMachine.groundDetector.canWalkGround)
+                {
+                    stateMachine.characterController.Move(stateMachine.inputReader.dir * stateMachine.speed * Time.deltaTime);
+                }
             }
-        }
 
-        else
-        {
-            stateMachine.animator.Play("Shoot");
-        }
+            else
+            {
+                stateMachine.animator.Play("Shoot");
+            }
+
     }
 
     protected void CheckForJump()
@@ -99,6 +100,15 @@ public abstract class PlayerBaseState : State
         if (stateMachine.inputReader.inputControls.Player.JUMP.WasPerformedThisFrame())
         {
             stateMachine.NextState(new PlayerJumpState(stateMachine));
+        }
+    }
+
+    protected void CheckForCrunch()
+    {
+        if(stateMachine.inputReader.inputControls.Player.CRUNCH.WasPerformedThisFrame() 
+            && stateMachine.plateformDetector.isOnPlateform)
+        {
+            stateMachine.NextState(new PlayerFallState(stateMachine));
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
 {
+    public Transform shootPoint;
     // Start is called before the first frame update
     void Start()
     {

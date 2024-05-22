@@ -53,6 +53,15 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CRUNCH"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf4a5444-0cc0-4bc8-8cc8-9bd0f293a43c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -220,6 +229,28 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""action"": ""SHOOT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d23c9199-25b6-464e-9733-362e095369d4"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CRUNCH"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d18d13f8-9837-4705-af40-9dc5d41466d6"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CRUNCH"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -231,6 +262,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         m_Player_MOVE = m_Player.FindAction("MOVE", throwIfNotFound: true);
         m_Player_JUMP = m_Player.FindAction("JUMP", throwIfNotFound: true);
         m_Player_SHOOT = m_Player.FindAction("SHOOT", throwIfNotFound: true);
+        m_Player_CRUNCH = m_Player.FindAction("CRUNCH", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +327,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MOVE;
     private readonly InputAction m_Player_JUMP;
     private readonly InputAction m_Player_SHOOT;
+    private readonly InputAction m_Player_CRUNCH;
     public struct PlayerActions
     {
         private @PlayerInputControls m_Wrapper;
@@ -302,6 +335,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         public InputAction @MOVE => m_Wrapper.m_Player_MOVE;
         public InputAction @JUMP => m_Wrapper.m_Player_JUMP;
         public InputAction @SHOOT => m_Wrapper.m_Player_SHOOT;
+        public InputAction @CRUNCH => m_Wrapper.m_Player_CRUNCH;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -320,6 +354,9 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @SHOOT.started += instance.OnSHOOT;
             @SHOOT.performed += instance.OnSHOOT;
             @SHOOT.canceled += instance.OnSHOOT;
+            @CRUNCH.started += instance.OnCRUNCH;
+            @CRUNCH.performed += instance.OnCRUNCH;
+            @CRUNCH.canceled += instance.OnCRUNCH;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -333,6 +370,9 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @SHOOT.started -= instance.OnSHOOT;
             @SHOOT.performed -= instance.OnSHOOT;
             @SHOOT.canceled -= instance.OnSHOOT;
+            @CRUNCH.started -= instance.OnCRUNCH;
+            @CRUNCH.performed -= instance.OnCRUNCH;
+            @CRUNCH.canceled -= instance.OnCRUNCH;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -355,5 +395,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         void OnMOVE(InputAction.CallbackContext context);
         void OnJUMP(InputAction.CallbackContext context);
         void OnSHOOT(InputAction.CallbackContext context);
+        void OnCRUNCH(InputAction.CallbackContext context);
     }
 }
