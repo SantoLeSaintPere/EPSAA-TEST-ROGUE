@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateMachine : MonoBehaviour
+public class EnemyStateMachine : StateMachine
 {
-    public Transform shootPoint;
+    [HideInInspector]
+    public EnemyGroundDetector groundDetector;
+    [HideInInspector]
+    public EnemyShootManager shootManager;
+    [HideInInspector]
+    public EnemyRangesManager rangesManager;
+
+    [Header("BODY + HOLDER")]
+    public float angleDesired;
+    public Transform body, holder;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        groundDetector = GetComponent<EnemyGroundDetector>();
+        shootManager = GetComponent<EnemyShootManager>();
+        rangesManager = GetComponent<EnemyRangesManager>();
     }
 }
