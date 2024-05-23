@@ -20,13 +20,14 @@ public class PlayerFallState : PlayerBaseState
         timer2 += time; 
             Fall();
 
+        CheckForShoot();
 
-        if(stateMachine.groundDetector.isGrounded)
+        if (stateMachine.groundDetector.isGrounded)
         {
             timer += time;
             if(stateMachine.inputReader.isShooting)
             {
-                stateMachine.animator.Play("LAND-SHOOT");
+                stateMachine.animator.Play("Land-Shoot");
             }
 
             else

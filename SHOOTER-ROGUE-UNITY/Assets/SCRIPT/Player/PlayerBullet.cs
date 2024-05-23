@@ -28,7 +28,7 @@ public class PlayerBullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(!other.CompareTag("Player"))
+        if(!other.CompareTag("Player") && !other.CompareTag("Bullet"))
         {
             Destroy(gameObject);    
         }
