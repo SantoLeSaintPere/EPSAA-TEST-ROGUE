@@ -214,11 +214,11 @@ GameObject:
   - component: {fileID: 179911188}
   - component: {fileID: 179911192}
   - component: {fileID: 179911193}
-  - component: {fileID: 179911194}
   - component: {fileID: 179911195}
   - component: {fileID: 179911197}
   - component: {fileID: 179911196}
   - component: {fileID: 179911198}
+  - component: {fileID: 179911199}
   m_Layer: 7
   m_Name: ENEMY
   m_TagString: Enemy
@@ -293,30 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 857073411}
   health: 0
-  maxHealth: 4
---- !u!136 &179911194
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179911186}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  maxHealth: 3
 --- !u!114 &179911195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,9 +309,12 @@ MonoBehaviour:
   groundDetector: {fileID: 0}
   shootManager: {fileID: 0}
   rangesManager: {fileID: 0}
-  angleDesired: 0
-  body: {fileID: 0}
-  holder: {fileID: 0}
+  player: {fileID: 0}
+  animator: {fileID: 0}
+  speed: 0.5
+  bodyRot: 90
+  body: {fileID: 413353292}
+  holder: {fileID: 1807416097}
 --- !u!114 &179911196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,8 +363,31 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackSize: {x: 15, y: 2, z: 2}
+  attackSize: {x: 10, y: 1, z: 2}
   isInAttackRange: 0
+--- !u!136 &179911199
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179911186}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.38
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &206925920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,7 +1315,7 @@ MonoBehaviour:
   isGrounded: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 896
 --- !u!114 &785751439
 MonoBehaviour:
   m_ObjectHideFlags: 0

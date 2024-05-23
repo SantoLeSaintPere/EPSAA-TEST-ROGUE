@@ -14,7 +14,7 @@ public abstract class PlayerBaseState : State
 
     protected  void CheckForShoot()
     {
-        if(stateMachine.inputReader.isShooting)
+        if(stateMachine.inputReader.isShooting && stateMachine.groundDetector.isGrounded)
         {
             stateMachine.NextState(new PlayerShootState(stateMachine));
         }
@@ -75,6 +75,8 @@ public abstract class PlayerBaseState : State
         }
     }
 
+   
+
     protected void MoveShoot()
     {
         CheckDirection();
@@ -103,6 +105,15 @@ public abstract class PlayerBaseState : State
         }
     }
 
+    protected void CheckForJumpShoot()
+    {
+
+        if (stateMachine.inputReader.inputControls.Player.JUMP.WasPerformedThisFrame())
+        {
+            stateMachine.NextState(new PlayerJumpShootState(stateMachine));
+        }
+    }
+
     protected void CheckForCrunch()
     {
         if(stateMachine.inputReader.inputControls.Player.CRUNCH.WasPerformedThisFrame() 
@@ -125,5 +136,14 @@ public abstract class PlayerBaseState : State
 
         stateMachine.characterController.Move((-stateMachine.transform.up * stateMachine.forceReceiver.gravityMultiplier) * Time.deltaTime);
         stateMachine.characterController.Move(stateMachine.inputReader.dir * stateMachine.speed * Time.deltaTime);
+    }
+
+    protected void AntiEndlessFallSecurity(float timer)
+    {
+        if (!stateMachine.groundDetector.isGrounded && timer >= stateMachine.forceReceiver.fallMaxTime)
+        {
+            stateMachine.transform.position = stateMachine.forceReceiver.lastPos;
+            stateMachine.NextState(new PlayerMoveState(stateMachine));
+        }
     }
 }

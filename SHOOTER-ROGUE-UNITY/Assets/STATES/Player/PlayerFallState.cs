@@ -20,10 +20,20 @@ public class PlayerFallState : PlayerBaseState
         timer2 += time; 
             Fall();
 
+
         if(stateMachine.groundDetector.isGrounded)
         {
             timer += time;
-            stateMachine.animator.Play("Land");
+            if(stateMachine.inputReader.isShooting)
+            {
+                stateMachine.animator.Play("LAND-SHOOT");
+            }
+
+            else
+            {
+                stateMachine.animator.Play("Land");
+            }
+
             Debug.Log("Land");
             if(timer >= stateMachine.forceReceiver.landFrimeRate/60)
             {
@@ -31,11 +41,7 @@ public class PlayerFallState : PlayerBaseState
             }
         }
 
-        if(!stateMachine.groundDetector.isGrounded && timer2 >= stateMachine.forceReceiver.fallMaxTime)
-        {
-            stateMachine.transform.position = stateMachine.forceReceiver.lastPos;
-            stateMachine.NextState(new PlayerMoveState(stateMachine));
-        }
+        AntiEndlessFallSecurity(timer2);
     }
 
     public override void OnExit()

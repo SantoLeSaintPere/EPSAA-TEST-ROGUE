@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateMachine : StateMachine
+public class EnemyShootStateMachine : StateMachine
 {
     [HideInInspector]
     public EnemyGroundDetector groundDetector;
@@ -11,8 +11,15 @@ public class EnemyStateMachine : StateMachine
     [HideInInspector]
     public EnemyRangesManager rangesManager;
 
+    [HideInInspector]
+    public Transform player;
+
+    [HideInInspector]
+    public Animator animator;
+
+    public float speed = 2.5f;
     [Header("BODY + HOLDER")]
-    public float angleDesired;
+    public float bodyRot = 90f;
     public Transform body, holder;
     // Start is called before the first frame update
     void Start()
@@ -20,5 +27,12 @@ public class EnemyStateMachine : StateMachine
         groundDetector = GetComponent<EnemyGroundDetector>();
         shootManager = GetComponent<EnemyShootManager>();
         rangesManager = GetComponent<EnemyRangesManager>();
+
+        player = GameObject.FindWithTag("Player").transform;
+
+
+        animator = GetComponentInChildren<Animator>();
+
+        NextState(new EnemyShootMoveState(this));
     }
 }
