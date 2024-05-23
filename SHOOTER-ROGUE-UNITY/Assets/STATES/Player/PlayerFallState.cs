@@ -36,7 +36,7 @@ public class PlayerFallState : PlayerBaseState
             }
 
             Debug.Log("Land");
-            if(timer >= stateMachine.forceReceiver.landFrimeRate/60)
+            if(timer >= stateMachine.forceReceiver.landFrimeRate/60 || stateMachine.inputReader.isMoving)
             {
                 stateMachine.NextState(new PlayerMoveState(stateMachine));
             }
