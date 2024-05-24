@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5831507052186027346}
   - component: {fileID: 632031980666874237}
   - component: {fileID: 7161838311559019924}
-  - component: {fileID: 8091001285058630584}
+  - component: {fileID: 6835647589954911774}
   m_Layer: 0
-  m_Name: PlayerBullet
+  m_Name: EnemyBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8091001285058630584
+--- !u!114 &6835647589954911774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7381431694539752330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5018fdb0826440b43bceab00fe2eb4af, type: 3}
+  m_Script: {fileID: 11500000, guid: cfdb5f94fd6d6cc44bb579381489653c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 0
@@ -160,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8e913d6a4af3e434d97419085f498ab1, type: 2}
+  - {fileID: 2100000, guid: 2d43a5500817751478f41375d1bf3de3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

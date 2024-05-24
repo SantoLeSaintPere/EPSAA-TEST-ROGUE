@@ -126,6 +126,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 7644065790017190836}
+  Bullet: {fileID: 7381431694539752330, guid: 0d2717b45575bc149aa56036169e10de, type: 3}
+  fireRate: 0.5
+  bulletDamage: 1
+  bulletSpeed: 2.5
+  bulletDir: {x: 0, y: 0, z: 0}
+  bulletTimeToDestroy: 1.25
+  shootTimer: 0
 --- !u!114 &8133518977004594296
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public int bulletDamage;
     public float bulletSpeed;
@@ -22,15 +22,15 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
-            other.GetComponent<EnemyHealthManager>().TakeDamage(bulletDamage);
+            other.GetComponent<PlayerHealthManager>().TakeDamage(bulletDamage);
             Destroy(gameObject);
         }
 
-        if(!other.CompareTag("Player") && !other.CompareTag("Bullet"))
+        if (!other.CompareTag("Enemy") && !other.CompareTag("Bullet"))
         {
-            Destroy(gameObject);    
+            Destroy(gameObject);
         }
     }
 }

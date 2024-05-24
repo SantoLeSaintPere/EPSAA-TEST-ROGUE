@@ -6,11 +6,10 @@ public class PlayerShootManager : MonoBehaviour
 {
     public Transform shootPoint;
     public GameObject Bullet;
-    public float fireRate = 1;
 
 
     [Header("BULLET SET UP")]
-    public float bulletDamage = 1;
+    public int bulletDamage = 1;
     public float bulletSpeed = 5;
     public Vector3 bulletDir;
     public float bulletTimeToDestroy = 2;
@@ -19,6 +18,14 @@ public class PlayerShootManager : MonoBehaviour
     public GameObject gunHand;
     public GameObject gunBack;
 
+    [Header("REVOLVER")]
+    public float gunTimeToHide;
+    [HideInInspector]
+    public bool gunOff;
+
+
+    [Header("MINI-GUN")]
+    public float fireRate = 1;
     [HideInInspector]
     public float shootTimer;
     // Start is called before the first frame update
@@ -59,5 +66,17 @@ public class PlayerShootManager : MonoBehaviour
         bulletInst.GetComponent<PlayerBullet>().bulletDir = shootPoint.right;
         bulletInst.GetComponent<PlayerBullet>().bulletTimeToDestroy = bulletTimeToDestroy;
 
+        StartCoroutine(ShowGunCoroutine());
+
+    }
+
+    IEnumerator ShowGunCoroutine()
+    {
+        ShowGun();
+        gunOff = true;
+        yield return new WaitForSeconds(gunTimeToHide);
+        HideGun();
+        StopAllCoroutines();
+        gunOff = false;
     }
 }

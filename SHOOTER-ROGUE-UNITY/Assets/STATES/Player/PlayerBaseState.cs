@@ -19,13 +19,7 @@ public abstract class PlayerBaseState : State
             stateMachine.shootManager.Shoot();
         }
 
-        if(stateMachine.inputReader.isShooting)
-        {
-            stateMachine.shootManager.ShowGun();
-            ShootBehaviour();
-        }
-
-        else
+        if(!stateMachine.inputReader.isShooting)
         {
             stateMachine.shootManager.HideGun();
         }
@@ -52,7 +46,7 @@ public abstract class PlayerBaseState : State
     {
         CheckDirection();
 
-        if(stateMachine.inputReader.isShooting)
+        if(stateMachine.inputReader.isShooting && stateMachine.shootManager.gunOff)
         {
             if (stateMachine.inputReader.isMoving)
             {

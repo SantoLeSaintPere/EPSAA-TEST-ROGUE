@@ -9,8 +9,10 @@ public class PlayerHealthManager : MonoBehaviour
     public TMP_Text text;
     public Image healthBar;
     [HideInInspector]
-    public int health;
-    public int maxHealth;
+    public float health;
+    public float maxHealth = 4;
+
+    bool isDead;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,17 +31,16 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
-        if (health <= 0)
+        if(!isDead)
         {
+            Debug.Log("HIT");
+            health -= damage;
 
-            Debug.Log("DEATH STATE");
-        }
-
-
-        else
-        {
-            health -=damage;
+            if (health <= 0)
+            {
+                Debug.Log("DEATH STATE");
+                isDead = true;
+            }
         }
     }
 }

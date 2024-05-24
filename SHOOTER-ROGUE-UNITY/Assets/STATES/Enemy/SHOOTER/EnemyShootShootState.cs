@@ -15,7 +15,8 @@ public class EnemyShootShootState : EnemyShootBaseState
 
     public override void InUpdate(float time)
     {
-        if(!stateMachine.rangesManager.isInAttackRange)
+        ShootBehaviour();
+        if (!stateMachine.rangesManager.isInAttackRange)
         {
             stateMachine.NextState(new EnemyShootMoveState(stateMachine));
         }

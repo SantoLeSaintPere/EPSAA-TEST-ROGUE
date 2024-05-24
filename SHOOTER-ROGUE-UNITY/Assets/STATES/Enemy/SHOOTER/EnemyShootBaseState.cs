@@ -57,8 +57,18 @@ public abstract class EnemyShootBaseState : State
         }
     }
 
-    protected void Shoot()
-    {
 
+    protected void ShootBehaviour()
+    {
+        if (stateMachine.shootManager.shootTimer >= stateMachine.shootManager.fireRate)
+        {
+            stateMachine.shootManager.Shoot();
+            stateMachine.shootManager.shootTimer = 0;
+        }
+
+        if (stateMachine.shootManager.shootTimer != stateMachine.shootManager.fireRate)
+        {
+            stateMachine.shootManager.shootTimer += Time.deltaTime;
+        }
     }
 }
